@@ -3,6 +3,7 @@ package test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 //solution to https://www.spoj.com/problems/SDITSAVL/
@@ -68,6 +69,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		FastReader input = new FastReader();
+		//Scanner input = new Scanner(System.in); //too slow
 		
 		AVL_Tree tree = new AVL_Tree();
 		
@@ -135,7 +137,7 @@ class AVL_Tree {
 		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		x.height = Math.max(height(x.left), height(x.right)) + 1;
 		
-		//update size
+		//update size correct order: child y first then parent x
 		y.size = size(y.left) + size(y.right) + 1;
 		x.size = size(x.left) + size(x.right) + 1;
 		
@@ -153,12 +155,12 @@ class AVL_Tree {
 		x.right = T2;
 		
 		//update heights
-		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		x.height = Math.max(height(x.left), height(x.right)) + 1;
+		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		
-		//update size
-		y.size = size(y.left) + size(y.right) + 1;
+		//update size correct order: child x first then parent y
 		x.size = size(x.left) + size(x.right) + 1;
+		y.size = size(y.left) + size(y.right) + 1;
 		
 		return y;
 	}
