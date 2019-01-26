@@ -15,5 +15,4 @@ public class Main {
 		o = BinarySearch.binary_search(A, 12);
 		System.out.println(o);
 	}
-
 }
