@@ -24,18 +24,6 @@ public class AVL_Tree {
 		return height(cur.right) - height(cur.left);
 	}
 	
-	/*
-	  
-	         y                               x
-		    / \     Right Rotation         /   \
-		   x   T3   – – – – – – – >       T1    y 
-		  / \       < - - - - - - -            / \
-		 T1  T2     Left Rotation            T2  T3
-		Keys in both of the above trees follow the 
-	 
-	 
-	*/
-	
 	private Node rightRotate(Node y) {
 		if(y == null || y.left == null) return y;
 		
@@ -45,8 +33,8 @@ public class AVL_Tree {
 		//rotation
 		x.right = y;
 		y.left = T2;
-		
-		//update heights
+
+		//update heights, first child y then parent x
 		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		x.height = Math.max(height(x.left), height(x.right)) + 1;
 		
@@ -63,9 +51,9 @@ public class AVL_Tree {
 		y.left = x;
 		x.right = T2;
 		
-		//update heights
-		y.height = Math.max(height(y.left), height(y.right)) + 1;
+		//update heights, first child x then parent y
 		x.height = Math.max(height(x.left), height(x.right)) + 1;
+		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		
 		return y;
 	}
@@ -116,7 +104,8 @@ public class AVL_Tree {
 	}
 	
 	
-	
+
+	//testing purpose
 	void preOrder(Node cur) { 
         if (cur != null) { 
             System.out.print(cur.value + " "); 
@@ -150,6 +139,17 @@ public class AVL_Tree {
     }
     
 }
+
+//useful image
+/*
+
+		    y                               x
+		   / \      Right Rotation        /   \
+		  x   T3    – – – – – – – >      T1    y 
+		 / \        < - - - - - - -           / \
+		T1  T2      Left Rotation           T2  T3
+
+*/
 
 //alternative rebalance
 /*
